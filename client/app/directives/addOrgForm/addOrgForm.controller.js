@@ -63,8 +63,8 @@ class AddOrgFormController {
       this.currentUsers = _.reject(this.currentUsers, (currentUser) => {
         return currentUser._id === user._id;
       });
-      this.getCurrentOrganizationData();
     }
+    this.getCurrentOrganizationData();
   }
 
   getCurrentOrganizationData(){

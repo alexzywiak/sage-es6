@@ -3,9 +3,9 @@ import {testDirective} from './test.directive';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-import {addOrgForm} from '../../directives/addOrgForm/addOrgForm';
+import {addItem} from '../../directives/addItem/addItem';
 
-export const test = angular.module('test', [uiRouter, addOrgForm.name])
+export const test = angular.module('test', [uiRouter, addItem.name])
   .config(($stateProvider) => {
     $stateProvider.state('test', {
       url: '/test',

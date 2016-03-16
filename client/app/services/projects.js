@@ -1,11 +1,11 @@
 
 export const projects = ($http) => {
+  
   /**
   * Return all users currently assigned to a task
   * @param  {[int]} taskId   [id of the given task]
   * @return {[array]}        [array of user objects]
   */
-
   const createNew = (data) => {
     return $http({
       method: 'POST',
@@ -54,7 +54,10 @@ export const projects = ($http) => {
     return $http({
       method: 'POST',
       url: 'api/users/projects',
-      data: data
+      data: {
+        userId: data.userId,
+        projectId: data.itemId
+      }
     })
     .then(resp => resp.data);
   };
@@ -63,7 +66,10 @@ export const projects = ($http) => {
     return $http({
       method: 'POST',
       url: 'api/users/projects/remove',
-      data: data
+      data: {
+        userId: data.userId,
+        projectId: data.itemId
+      }
     })
     .then(resp => resp.data);
   };

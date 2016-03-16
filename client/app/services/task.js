@@ -81,7 +81,10 @@ export const tasks = ($http) => {
     return $http({
       method: 'POST',
       url: '/api/users/tasks',
-      data: JSON.stringify(data)
+      data: {
+        userId: data.userId,
+        taskId: data.itemId
+      }
     })
     .then(resp => resp.data);
   };
@@ -90,7 +93,10 @@ export const tasks = ($http) => {
     return $http({
       method: 'POST',
       url: '/api/users/tasks/remove',
-      data: data
+      data: {
+        userId: data.userId,
+        taskId: data.itemId
+      }
     })
     .then(resp => resp.data);
   };

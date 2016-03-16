@@ -57,7 +57,10 @@ export const organization = ($http) => {
     return $http({
       method: 'POST',
       url: '/api/users/orgs',
-      data: JSON.stringify(data)
+      data: {
+        userId: data.userId,
+        orgId: data.itemId
+      }
     })
     .then(function(resp) {
       return resp.data;
@@ -68,7 +71,10 @@ export const organization = ($http) => {
     return $http({
       method: 'POST',
       url: '/api/users/orgs/remove',
-      data: data
+      data: {
+        userId: data.userId,
+        orgId: data.itemId
+      }
     })
     .then(function(resp) {
       return resp.data;

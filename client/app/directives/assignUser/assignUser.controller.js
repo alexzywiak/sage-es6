@@ -17,7 +17,6 @@ class AssignUserController {
   }
 
   filterAllUserList(){
-    console.log(this.allUsers, this.currentUsers, this.filteredAllUsers);
     // Filter out any users already assigned to the organization
     let currentUserIds = this.currentUsers.reduce((dict, user) => {
       dict[user._id] = true;
