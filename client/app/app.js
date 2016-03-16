@@ -13,6 +13,7 @@ import angularStorage from 'angular-storage';
 import {services} from './services/services';
 
 // gulp component --name=new-component
+import {navbar} from './directives/navBar/navBar';
 import {test} from './components/test/test';
 
 angular.module('app', [
@@ -23,6 +24,7 @@ angular.module('app', [
 
   services.name,
 
+  navbar.name,
   test.name
 ])
 .directive('app', appDirective);

@@ -3,6 +3,8 @@ class NavbarController {
     
     this.$state = $state;
 
+    this.logo = "Sage"
+
     this.links = [{
       title: 'test',
       state: 'test'

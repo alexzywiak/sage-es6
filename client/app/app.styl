@@ -1,5 +1,26 @@
-html, body
-  height 100%
-  
+@import '../style'
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
+
+html
 body
-  margin 0
+  height 100%
+
+body
+  font-family 'Roboto', sans-serif
+  background-color bg-color
+  *
+    box-sizing border-box
+a
+  text-decoration none
+  &:hover
+  &:active
+    text-decoration none
+    
+#app
+  main
+    padding-top navbar-height
+    center(1200px)
+    padding gutter * 2
+    
+  footer
+    col(1)

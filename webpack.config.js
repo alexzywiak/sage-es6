@@ -24,6 +24,6 @@ module.exports = {
   },
 
   stylus: {
-    use: [require('jeet')(), require('rupture')()]
+    use: [require('nib')(), require('jeet')(), require('rupture')()]
   }
 };

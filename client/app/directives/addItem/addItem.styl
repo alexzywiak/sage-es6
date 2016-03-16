@@ -1,2 +1,19 @@
+@import '../../../style'
+
 .addItem
   position relative
+    
+  form
+    clearfix()
+    label
+      display block
+      margin-bottom 20px
+
+    input[type=text]
+      col(2/3)
+      form-control()
+      
+      
+    input[type=submit]
+      col(1/3)
+      btn(primary-color)

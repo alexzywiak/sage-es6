@@ -1,5 +1,6 @@
 <nav class="navbar">
-    <a 
+    <a ui-sref="/" class="logo">{{vm.logo}}</a>
+    <a class="links"
       ng-repeat="link in vm.links" 
       ui-sref="{{link.state || '#'}}" 
       ng-click="vm.handleClick(link.click)">
