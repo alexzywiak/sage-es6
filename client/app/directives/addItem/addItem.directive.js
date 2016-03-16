@@ -12,6 +12,12 @@ export const addItemDirective = () => {
       factoryName: '@'
     },
     restrict: 'E',
-    replace: true
+    replace: true,
+    transclude: true,
+    link: (scope, element, attrs, ctrl, transclude) => {
+      transclude(scope, (clone, scope) => {
+        element.prepend(clone);
+      });
+    }
   };
 };

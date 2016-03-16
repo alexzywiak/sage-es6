@@ -1,6 +1,12 @@
 <div>
   <add-item
-    factory-name="Organization"
-    item-id="vm.itemId"
-  ></add-item>
+  factory-name="Organization"
+  item-id="vm.itemId"
+  >
+  <form ng-submit="vm.handleSubmit()">
+    <label>Organization Title</label>
+    <input type="text" ng-model="vm.currentItem.title">
+    <input type="submit">
+  </form>
+</add-item>
 </div>

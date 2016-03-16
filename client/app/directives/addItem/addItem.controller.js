@@ -20,6 +20,7 @@ class AddItemController {
   }
 
   handleSubmit(){
+    console.log('handling');
     if(this.itemId){
       this.Factory.update(this.currentItem)
       .then(resp => console.log(resp));
