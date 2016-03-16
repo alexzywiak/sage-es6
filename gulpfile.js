@@ -7,6 +7,7 @@ var path    = require('path');
 var yargs   = require('yargs').argv;
 var tpl     = require('gulp-template');
 var rename  = require('gulp-rename');
+var mocha   = require('gulp-mocha');
 
 /*
 map of paths for using with the tasks below
@@ -19,13 +20,22 @@ var paths = {
   toCopy: ['client/index.html'],
   html: ['client/index.html', 'client/app/**/*.html'],
   dest: 'dist',
-  blankTemplates: 'templates/component/*.**'
+  blankTemplates: { 
+    component: 'templates/component/*.**',
+    directive: 'templates/directive/*.**'
+  },
+  test: ['test/**/*.js']
 };
 
 // helper funciton
 var resolveToComponents = function(glob){
   glob = glob || '';
   return path.join('client', 'app/components', glob); // app/components/{glob}
+};
+
+var resolveToDirectives = function(glob){
+  glob = glob || '';
+  return path.join('client', 'app/directives', glob); // app/components/{glob}
 };
 
 gulp.task('todo', function() {
@@ -75,7 +85,7 @@ gulp.task('component', function(){
   var parentPath = yargs.parent || '';
   var destPath = path.join(resolveToComponents(), parentPath, name);
 
-  return gulp.src(paths.blankTemplates)
+  return gulp.src(paths.blankTemplates.component)
     .pipe(tpl({
       name: name,
       upCaseName: cap(name)
@@ -85,6 +95,31 @@ gulp.task('component', function(){
     }))
     .pipe(gulp.dest(destPath));
 });
+
+gulp.task('directive', function(){
+  var cap = function(val){
+    return val.charAt(0).toUpperCase() + val.slice(1);
+  };
+
+  var name = yargs.name;
+  var parentPath = yargs.parent || '';
+  var destPath = path.join(resolveToDirectives(), parentPath, name);
+
+  return gulp.src(paths.blankTemplates.directive)
+    .pipe(tpl({
+      name: name,
+      upCaseName: cap(name)
+    }))
+    .pipe(rename(function(path){
+      path.basename = path.basename.replace('directive', name);
+    }))
+    .pipe(gulp.dest(destPath));
+});
+
+gulp.task('test', function(){
+  return gulp.src('test/integration/apiprojects.js')
+    .pipe(mocha({reporter: 'nyan'}));
+}); 
 
 
 gulp.task('default', function(done) {

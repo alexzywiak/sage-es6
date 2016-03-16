@@ -1,26 +1,44 @@
-import {test} from './test';
-import {TestController} from './test.controller';
-import {testDirective} from './test.directive';
-import template from './test.html';
+import {<%= name %>} from './<%= name %>';
+import {<%= upCaseName %>Controller} from './<%= name %>.controller';
+import {<%= name %>Directive} from './<%= name %>.directive';
+import template from './<%= name %>.html';
 
-describe('Test', ()=>{
+describe('<%= upCaseName %>', ()=>{
   let $rootScope,
-  makeController;
+  makeController,
+  compile,
+  scope,
+  onAddUser,
+  onRemoveUser,
+  directiveElem;
 
-  beforeEach(window.module(test.name));
+  beforeEach(window.module(<%= name %>.name));
   beforeEach(inject((_$rootScope_)=>{
     $rootScope = _$rootScope_;
     makeController = ()=>{
-      return new TestController();
+      return new <%= upCaseName %>Controller();
     };
   }));
 
-  describe('Module', ()=>{
-    // test things about the component module
-    // checking to see if it registers certain things and what not
-    // test for best practices with naming too
-    // test for routing
+  // Mock directive scope props
+  beforeEach(function() {
+
+    inject(function ($compile, $rootScope) {
+      compile=$compile;
+      scope=$rootScope.$new();
+    });
+
+    directiveElem = getCompiledElement();
   });
+
+  function getCompiledElement(){
+    var compiledDirective = compile(angular.element(
+      // directive  
+    ))(scope);
+    scope.$digest();
+    return compiledDirective;
+  }
+
 
   describe('Controller', ()=>{
     // test your controller here
@@ -44,7 +62,7 @@ describe('Test', ()=>{
 
   describe('Directive', ()=>{
       // test the component/directive itself
-      let directive = testDirective();
+      let directive = <%= name %>Directive();
 
       it('should use the right template',()=>{
         expect(directive.template).to.equal(template);
@@ -55,7 +73,7 @@ describe('Test', ()=>{
       });
 
       it('should use the right controller', ()=>{
-        expect(directive.controller).to.equal(TestController);
+        expect(directive.controller).to.equal(<%= upCaseName %>Controller);
       });
   });
 });

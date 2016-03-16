@@ -1,0 +1,74 @@
+
+export const projects = ($http) => {
+  /**
+  * Return all users currently assigned to a task
+  * @param  {[int]} taskId   [id of the given task]
+  * @return {[array]}        [array of user objects]
+  */
+
+  const createNew = (data) => {
+    return $http({
+      method: 'POST',
+      url: 'api/projects/create',
+      data: JSON.stringify(data)
+    }).then(resp => resp.data);
+  };
+
+  const getById = (projectId) => {
+    return $http({
+      method: 'GET',
+      url: 'api/projects/' + projectId
+    }).then(resp => resp.data);
+  };
+
+  const getUsersById =  (projectId) => {
+    return $http({
+      method: 'GET',
+      url: 'api/projects/users/' + projectId
+    }).then(resp => resp.data);
+  };
+
+  const remove = (projectId) => {
+    return $http({
+      method: 'DELETE',
+      url: 'api/projects/' + projectId
+    }).then(resp => resp.data);
+  };
+
+  const update = (projectId, newData) => {
+    return $http({
+      method: 'PUT',
+      url: 'api/projects',
+      data: newData
+    }).then(resp => resp.data);
+  };
+
+  const getAll = () => {
+    return $http({
+      method: 'GET',
+      url: 'api/projects'
+    }).then(resp => resp.data);
+  };
+
+  const addToUser = (data) => {
+    return $http({
+      method: 'POST',
+      url: 'api/users/projects',
+      data: data
+    })
+    .then(resp => resp.data);
+  };
+
+  const removeFromUser = (data) => {
+    return $http({
+      method: 'POST',
+      url: 'api/users/projects/remove',
+      data: data
+    })
+    .then(resp => resp.data);
+  };
+
+  return {getAll, getById, createNew, update, remove, addToUser, removeFromUser}
+};
+
+projects.$inject = ['$http'];

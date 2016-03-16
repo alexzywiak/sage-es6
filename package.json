@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register client/app/components/test/test.spec.js"
+    "test": "mocha --compilers js:babel-core/register client/app/components/test/test.spec.js",
+    "start": "NODE_ENV=dev nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,13 +19,18 @@
   "homepage": "https://github.com/HR10-Sparta/Spartans-Sage#readme",
   "dependencies": {
     "angular": "^1.5.0",
+    "angular-jwt": "0.0.9",
+    "angular-storage": "0.0.13",
     "angular-ui-router": "^0.2.18",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
+    "bootstrap-css-only": "^3.3.6",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "jeet": "^6.1.2",
+    "jsonwebtoken": "^5.7.0",
     "jwt-simple": "^0.5.0",
+    "lodash": "^4.6.1",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
     "nodemailer": "^2.3.0",
@@ -56,6 +62,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.2",
     "karma-mocha-reporter": "^2.0.0",
+    "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
@@ -64,6 +71,7 @@
     "run-sequence": "^1.1.5",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.5.1",
+    "supertest": "^1.2.0",
     "webpack": "^1.12.14",
     "webpack-stream": "^3.1.0",
     "yargs": "^4.3.1"
