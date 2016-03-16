@@ -30,11 +30,13 @@ class AssignUserController {
   handleAddUser(index){
     let user = this.filteredAllUsers[index];
     this.onAddUser({user});
+    this.filterAllUserList();
   }
 
   handleRemoveUser(index){
     let user = this.currentUsers[index];
     this.onRemoveUser({user});
+    this.filterAllUserList();
   }
 
 }

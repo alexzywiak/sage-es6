@@ -1,6 +1,8 @@
 @import '../style'
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
 
+global-reset()
+
 html
 body
   height 100%
@@ -11,10 +13,14 @@ body
   *
     box-sizing border-box
 a
+  color text-color
   text-decoration none
   &:hover
   &:active
     text-decoration none
+ul
+  list-style-type none  
+  
     
 #app
   main

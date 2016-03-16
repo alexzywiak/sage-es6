@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 class AddItemController {
+  
   constructor($scope, $injector, User) {
     angular.extend(this, $scope);
     
@@ -20,7 +21,7 @@ class AddItemController {
   }
 
   handleSubmit(){
-    console.log('handling');
+
     if(this.itemId){
       this.Factory.update(this.currentItem)
       .then(resp => console.log(resp));
@@ -41,22 +42,26 @@ class AddItemController {
   }
 
   onAddUser(user){
+    // Remove user from item on the server
     if(this.itemId){    
       this.Factory.addToUser({
         itemId: this.itemId,
         userId: user._id
       });
     }
+    // Add new user to current user list
     this.currentUsers.push(user);
   }
 
   onRemoveUser(user){
+    // Remove user from item on server
     if(this.itemId){    
       this.Factory.removeFromUser({
         itemId: this.itemId,
         userId: user._id
       });
     }
+    // Remove user from current user list
     this.currentUsers = _.reject(this.currentUsers, (currentUser) => {
       return currentUser._id === user._id;
     });

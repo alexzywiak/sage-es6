@@ -1,11 +1,43 @@
-@import 'jeet'
+@import '../../../style'
 
 .assignUser
   position relative
+  border-radius 6px
+  padding 6px
+
+  .user-list-header
+    clearfix()
+
+  h4
+    margin 20px 0
+    col(1/2)
   
-  .user-list
-    max-height 200px
-    overflow scroll
+  input
+    col(1/2)
+    form-control()
+
+  .current-user-list
+    clearfix()
     
     a
-      span(1)
+      col(1/6)
+      tag()
+  
+  .all-user-list
+    clearfix()
+    
+    border 1px solid CONCRETE
+    border-radius 6px
+    padding 12px
+    max-height 90px
+    overflow scroll
+      
+    a
+      display block
+      color text-color
+      padding 18px 6px
+      border-bottom 1px solid CONCRETE
+      text-align center
+      border-radius 6px
+      &:hover
+        background-color SILVER
