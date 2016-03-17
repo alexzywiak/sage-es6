@@ -16,7 +16,7 @@ export const addItemDirective = () => {
     transclude: true,
     link: (scope, element, attrs, ctrl, transclude) => {
       transclude(scope, (clone, scope) => {
-        element.prepend(clone);
+        angular.element(element[0].querySelector('.item-form-container')).append(clone);
       });
     }
   };

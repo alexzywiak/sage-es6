@@ -2,19 +2,33 @@
 
 .addItem
   position relative
+  clearfix()
+  
+  .item-form-container
+    col(1/2)
     
+  .assign-user-container
+    col(1/2)
+
+  button
+    margin 20px 0
+    col(2/3, 1/6)
+    btn(primary-color)
+    
+  h4
+    color sub-text
+    margin-top 20px
+
   form
     clearfix()
-    
-    label
-      display block
-      margin-bottom 20px
 
     input[type=text]
-      col(2/3)
-      form-control()
-      
+      margin-bottom 20px
+      display block
+      width 100%
+      edit-input()
       
     input[type=submit]
-      col(1/3)
+      display block
+      width 100%
       btn(primary-color)

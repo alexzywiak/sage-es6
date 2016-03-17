@@ -1,11 +1,20 @@
 <section class="addItem">
-  <div></div>
-  <assign-user 
-    current-users="vm.currentUsers"
-    all-users="vm.allUsers"
-    item-id="vm.itemId"
-    on-add-user="vm.onAddUser(user)"
-    on-remove-user="vm.onRemoveUser(user)"
-  >
-  </assign-user>
+  
+  <div>
+    <!-- Transclusion Point -->
+    <section class="item-form-container"></section>
+    
+    <!-- Assign User Directive -->
+    <div class="assign-user-container">
+      <assign-user 
+        current-users="vm.currentUsers"
+        all-users="vm.allUsers"
+        item-id="vm.itemId"
+        on-add-user="vm.onAddUser(user)"
+        on-remove-user="vm.onRemoveUser(user)"
+      ></assign-user>
+    </div>
+  </div>
+
+  <button ng-click="vm.handleSubmit()">Submit</button>
 </section>

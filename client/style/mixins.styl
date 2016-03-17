@@ -10,11 +10,9 @@ btn(bg = primary-color, color=light-text)
   border-radius 4px
   transition border .25s linear,color .25s linear,background-color .25s linear
 
-  
 form-control(border = sub-text, color = sub-text,)
   height 42px
   padding 8px 12px
-  font-family Lato,Helvetica,Arial,sans-serif
   font-size 15px
   line-height 1.467
   color color
@@ -23,6 +21,19 @@ form-control(border = sub-text, color = sub-text,)
   box-shadow none
   transition border .25s linear,color .25s linear,background-color .25s linear
   
+edit-input()
+  height 42px
+  font-size 18px
+  line-height 1.467
+  color color
+  border none
+  border-bottom 1px solid text-color
+  box-shadow none
+  transition border .25s linear, color .25s linear, background-color .25s linear
+  &:focus
+    outline none
+    border-bottom 1px solid primary-color
+
 tag(bg = primary-color, color = light-text)
   border-radius 6px
   color color
