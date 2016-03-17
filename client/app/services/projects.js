@@ -1,16 +1,16 @@
 
 export const projects = ($http) => {
   
-  /**
-  * Return all users currently assigned to a task
-  * @param  {[int]} taskId   [id of the given task]
-  * @return {[array]}        [array of user objects]
-  */
+
   const createNew = (data) => {
     return $http({
       method: 'POST',
       url: 'api/projects/create',
-      data: JSON.stringify(data)
+      data: {
+        orgId: data.parentId,
+        name: data.name,
+        description: data.description
+      }
     }).then(resp => resp.data);
   };
 
