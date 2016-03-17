@@ -6,7 +6,7 @@ class TestController {
 
     this.loggedInUser = {};
 
-    this.itemId = "56e8b61c9f1a60651b8c5932";
+    this.organizationId = "56e8b61c9f1a60651b8c5932";
 
     this.User.getLoggedInUser()
       .then(user => {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 class AddItemController {
-  
+
   constructor($scope, $injector, User) {
     angular.extend(this, $scope);
     
@@ -21,15 +21,26 @@ class AddItemController {
   }
 
   handleSubmit(){
-
     if(this.itemId){
-      this.Factory.update(this.currentItem)
-      .then(resp => console.log(resp));
+      this.updateItem();
     } else {
-      this.Factory.createNew(this.currentItem)
-      .then(resp => {
-        this.itemId = resp._id;
-        this.currentItem = resp;
+      this.createNewItem();
+    }
+  }
+
+
+  // Will update an existing entry if itemId is defined
+  updateItem(){
+    this.Factory.update(this.currentItem)
+    .then(resp => console.log(resp));
+  }
+
+  // Will create a new entry if itemId is not defined
+  createNewItem(){
+    this.Factory.createNew(this.currentItem)
+    .then(resp => {
+      this.itemId = resp._id;
+      this.currentItem = resp;
         // Add all users to the new organization
         this.currentUsers.forEach((user) => {
           this.Factory.addToUser({
@@ -38,8 +49,8 @@ class AddItemController {
           });
         });
       });
-    }
   }
+
 
   onAddUser(user){
     // Remove user from item on the server
@@ -67,8 +78,8 @@ class AddItemController {
     });
   }
 
+  // If itemId is defined will look up data from db
   getCurrentItemData(){
-
     this.Factory.getById(this.itemId)
     .then(item => {
       this.currentItem = item;
