@@ -12,6 +12,8 @@ describe('AddItem', ()=>{
   onRemoveUser,
   directiveElem;
 
+  let spy = sinon.spy();
+
   beforeEach(window.module(addItem.name));
   beforeEach(inject((_$rootScope_)=>{
     $rootScope = _$rootScope_;
@@ -44,9 +46,9 @@ describe('AddItem', ()=>{
     // test your controller here
 
     it('should have a name property [REMOVE]', ()=>{ // erase me if you remove this.name from the controller
-      let controller = makeController();
+      // let controller = makeController();
 
-      expect(controller).to.have.property('greeting');
+      // expect(controller).to.have.property('greeting');
     });
   });
 
@@ -54,9 +56,9 @@ describe('AddItem', ()=>{
     // test the template
     // use Regexes to test that you are using the right bindings {{  }}
 
-    it('should have name in template [REMOVE]', ()=>{
-      expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
-    });
+    // it('should have name in template [REMOVE]', ()=>{
+    //   expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
+    // });
   });
 
 

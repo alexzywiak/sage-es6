@@ -13,6 +13,11 @@ export const addSubItemDirective = () => {
     },
     restrict: 'E',
     replace: true,
-    transclude: true
+    transclude: true,
+    link: (scope, element, attrs, ctrl, transclude) => {
+      transclude(scope, (clone, scope) => {
+        element.append(clone);
+      });
+    }
   };
 };

@@ -1,6 +1,6 @@
 import {navbar} from './navbar';
 import {NavbarController} from './navbar.controller';
-import {navbardirective} from './navbar.directive';
+import {navbarDirective} from './navbar.directive';
 import template from './navbar.html';
 
 describe('Navbar', ()=>{
@@ -26,9 +26,9 @@ describe('Navbar', ()=>{
     // test your controller here
 
     it('should have a name property [REMOVE]', ()=>{ // erase me if you remove this.name from the controller
-      let controller = makeController();
+      // let controller = makeController();
 
-      expect(controller).to.have.property('greeting');
+      // expect(controller).to.have.property('greeting');
     });
   });
 
@@ -36,9 +36,9 @@ describe('Navbar', ()=>{
     // test the template
     // use Regexes to test that you are using the right bindings {{  }}
 
-    it('should have name in template [REMOVE]', ()=>{
-      expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
-    });
+    // it('should have name in template [REMOVE]', ()=>{
+    //   expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
+    // });
   });
 
 
