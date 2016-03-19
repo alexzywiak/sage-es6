@@ -7,73 +7,103 @@ describe('<%= upCaseName %>', ()=>{
   let $rootScope,
   makeController,
   compile,
+  injector,
   scope,
-  onAddUser,
-  onRemoveUser,
-  directiveElem;
+  q,
+  deferred,
+  directiveElem,
+  mockFactory;
 
-  beforeEach(window.module(<%= name %>.name));
-  beforeEach(inject((_$rootScope_)=>{
-    $rootScope = _$rootScope_;
-    makeController = ()=>{
-      return new <%= upCaseName %>Controller();
+  beforeEach(function(){
+
+    mockFactory = {
+      createNew: () => {},
+      getAll: () => {}
     };
-  }));
 
-  // Mock directive scope props
-  beforeEach(function() {
-
-    inject(function ($compile, $rootScope) {
-      compile=$compile;
-      scope=$rootScope.$new();
+    // Register the mock factory on the module
+    window.module(<%= name %>.name, ($provide) => {
+      $provide.value('MockFactory', mockFactory);
     });
 
-    directiveElem = getCompiledElement();
+    // Inject the dependencies
+    inject(($compile, $rootScope, $injector, _$q_) => {
+
+      compile=$compile;
+      injector=$injector;
+      scope=$rootScope.$new();
+      
+      // Mock out $q
+      q = _$q_;
+
+      deferred = q.defer();
+
+      // Stub out factoryFunctions
+      sinon.stub(mockFactory, 'createNew', () => { return deferred.promise});   
+    });
   });
 
-  function getCompiledElement(){
-    var compiledDirective = compile(angular.element(
-      // directive  
-    ))(scope);
-    scope.$digest();
-    return compiledDirective;
-  }
-
+  // Restore mockFactory stubs
+  afterEach(() => {
+    mockFactory.createNew.restore();
+  });
 
   describe('Controller', ()=>{
-    // test your controller here
 
-    it('should have a name property [REMOVE]', ()=>{ // erase me if you remove this.name from the controller
-      let controller = makeController();
-
-      expect(controller).to.have.property('greeting');
-    });
+    beforeEach(inject((_$rootScope_)=>{
+      $rootScope = _$rootScope_;
+      makeController = (scope, injector)=>{
+        return new AddSubItemController(scope, injector);
+      };
+    }));
   });
 
   describe('Template', ()=>{
-    // test the template
-    // use Regexes to test that you are using the right bindings {{  }}
-
-    it('should have name in template [REMOVE]', ()=>{
-      expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
-    });
+    // it('should have name in template [REMOVE]', ()=>{
+    //   expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
+    // });
   });
 
 
   describe('Directive', ()=>{
-      // test the component/directive itself
-      let directive = <%= name %>Directive();
+    describe('Directive', ()=>{
 
-      it('should use the right template',()=>{
-        expect(directive.template).to.equal(template);
+      beforeEach(() => {
+        scope.parentId = 'parentId';
+        scope.MockFactory = 'MockFactory';
+        directiveElem = getCompiledElement();
       });
 
-      it('should use controllerAs', ()=>{
-        expect(directive).to.have.property('controllerAs');
-      });
+    // Create mocked out directive by creating fake element
+    function getCompiledElement(){
+      let compiledDirective = compile(angular.element(
+        `<<%= name => 
+        parent-id="parentId"
+        factory-name="MockFactory"      
+        >
+        <div>
+        transcludedContent
+        </div>
+        </<%= name %>>`
+        ))(scope);
+        scope.$digest();
+        return compiledDirective;
+      }
 
-      it('should use the right controller', ()=>{
-        expect(directive.controller).to.equal(<%= upCaseName %>Controller);
-      });
+    // test the component/directive itself
+    let directive = <%= name %>Directive();
+
+    it('should use the right template',()=>{
+      expect(directive.template).to.equal(template);
+    });
+
+    it('should use controllerAs', ()=>{
+      expect(directive).to.have.property('controllerAs');
+    });
+
+    it('should use the right controller', ()=>{
+      expect(directive.controller).to.equal(<%= upCaseName %>Controller);
+    });
   });
 });
+

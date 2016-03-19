@@ -3,102 +3,154 @@ import {AssignUserController} from './assignUser.controller';
 import {assignUserDirective} from './assignUser.directive';
 import template from './assignUser.html';
 
-describe('AssignUser', ()=>{
+describe('assignUser', ()=>{
   let $rootScope,
   makeController,
   compile,
+  injector,
   scope,
-  onAddUser,
-  onRemoveUser,
-  directiveElem;
+  q,
+  deferred,
+  directiveElem,
+  mockFactory;
 
-  beforeEach(window.module('assignUser'));
+  beforeEach(function(){
 
-  // Set up Controller
-  beforeEach(inject((_$rootScope_)=>{
-    $rootScope = _$rootScope_;
-    makeController = ()=>{
-      return new AssignUserController();
+    mockFactory = {
+      createNew: () => {},
+      getAll: () => {}
     };
-  }));
 
-  // Mock directive scope props
-  beforeEach(function() {
+    // Register the mock factory on the module
+    window.module(assignUser.name, ($provide) => {
+      $provide.value('MockFactory', mockFactory);
+    });
 
-    inject(function ($compile, $rootScope) {
-      compile=$compile;
+    // Inject the dependencies
+    inject((_$compile_, $rootScope, $injector, _$q_) => {
+
+      compile=_$compile_;
+      injector=$injector;
       scope=$rootScope.$new();
+      
+      // Mock out $q
+      q = _$q_;
 
-      onAddUser = sinon.spy();
-      onRemoveUser = sinon.spy();
+      deferred = q.defer();
 
-      scope.currentUsers = ['user1', 'user2'];
-      scope.allUsers = ['user3', 'user4'];
-      scope.onAddUser = onAddUser;
-      scope.onRemoveUser = onRemoveUser;
+      // Stub out factoryFunctions
+      sinon.stub(mockFactory, 'createNew', () => { return deferred.promise});   
     });
 
-    directiveElem = getCompiledElement();
+    makeController = (scope, injector)=>{
+      return new AssignUserController(scope, injector);
+    };
   });
 
-  function getCompiledElement(){
-    let compiledDirective = compile(angular.element(
-      `<assign-user 
-      current-users="currentUsers" 
-      all-users="allUsers" 
-      on-add-user="onAddUser()"
-      on-remove-user="onRemoveUser()">
-      </assign-user>`))(scope);
-      scope.$apply();
-      return compiledDirective;
-    }
+  // Restore mockFactory stubs
+  afterEach(() => {
+    mockFactory.createNew.restore();
+  });
 
-  // test the component/directive itself
-  let directive = assignUserDirective();
+  describe('Controller', ()=>{
 
-  // it('should use the right template',()=>{
-  //   expect(directive.template).to.equal(template);
-  // });
+    describe('filterAllUserList', () => {
+      it('should filter out current users from filteredAllUsers', () => {
+        scope.allUsers = [{_id:'user1'}, {_id:'user2'}];
+        scope.currentUsers = [{_id:'user1'}];
 
-  // it('should use controllerAs', ()=>{
-  //   expect(directive).to.have.property('controllerAs');
-  // });
+        let ctrl = makeController(scope, injector);
 
-  // it('should use the right controller', ()=>{
-  //   expect(directive.controller).to.equal(AssignUserController);
-  // });
+        ctrl.filterAllUserList();
+        
+        expect(ctrl.filteredAllUsers).to.eql([{_id:'user2'}]);
+        expect(ctrl.allUsers).to.equal(scope.allUsers);
+        expect(ctrl.currentUsers).to.equal(scope.currentUsers);
+      });
+    });
 
-  describe('Properties', () => {
+    describe('adding and removing users', () => {
+      it('should call onAddUser function with user at passed index', () => {
+        scope.allUsers = [{_id:'user1'}, {_id:'user2'}];
+        scope.currentUsers = [{_id:'user1'}];
+        scope.onAddUser = sinon.spy();
 
-    // it('should have a list of all users', () => {
-    //   const isolatedScope = directiveElem.isolateScope();
-    //   expect(isolatedScope.allUsers).to.be.a('array')
-    // }); 
+        let ctrl = makeController(scope, injector);
+        ctrl.filteredAllUsers = [{_id:'user2'}];
+        ctrl.handleAddUser(0);
 
-    // it('should have a list of current users', () => {
-    //   const isolatedScope = directiveElem.isolateScope();
-    //   expect(isolatedScope.currentUsers).to.be.a('array')
-    // }); 
+        expect(ctrl.onAddUser.args[0][0]).to.eql({user:{_id:'user2'}});
+      });
 
-    // it('should have an onAddUser Callback', () => {
-    //   const isolatedScope = directiveElem.isolateScope();
-    //   expect(isolatedScope.onAddUser).to.be.a('function');
-    //   isolatedScope.onAddUser();
-    //   expect(onAddUser.calledOnce);
-    // }); 
+      it('should call onRemoveUser function with user at passed index', () => {
+        scope.allUsers = [{_id:'user1'}, {_id:'user2'}];
+        scope.currentUsers = [{_id:'user1'}];
+        scope.onRemoveUser = sinon.spy();
 
-    // it('should have an onRemoveUser Callback', () => {
-    //   const isolatedScope = directiveElem.isolateScope();
-    //   expect(isolatedScope.onRemoveUser).to.be.a('function');
-    //   isolatedScope.onRemoveUser();
-    //   expect(onRemoveUser.calledOnce);
-    // }); 
-
-    it('should no be a piece of shit', () => {
-      let el = directiveElem.find('li');
-      el.triggerHandler('click');
-      expect()
+        let ctrl = makeController(scope, injector);
+        
+        ctrl.handleRemoveUser(0);
+        expect(scope.onRemoveUser.args[0][0]).to.eql({user: {_id:'user1'}});
+      });
     });
   });
 
+  describe('Template', ()=>{
+
+  });
+
+  describe('Directive', ()=>{
+    let ctrl;
+
+    beforeEach(() => {
+      scope.allUsers = [{username:'user1'}, {username:'user2'}];
+      scope.currentUsers = [{username:'user3'}, {username:'user4'}];
+      scope.onAddUser = sinon.spy();
+      scope.onRemoveUser = sinon.spy();
+
+      directiveElem = getCompiledElement();
+    });
+
+    // Create mocked out directive by creating fake element
+    function getCompiledElement(){
+      let compiledDirective = compile(angular.element(
+        `<assign-user 
+        all-users="allUsers"
+        current-users="currentUsers"
+        on-add-user="onAddUser"
+        on-remove-user="onRemoveUser"      
+        >
+        </assign-user>`
+        ))(scope);
+        scope.$digest();
+        return compiledDirective;
+      }
+
+    // test the component/directive itself
+    let directive = assignUserDirective();
+
+    it('should use the right template',()=>{
+      expect(directive.template).to.equal(template);
+    });
+
+    it('should use controllerAs', ()=>{
+      expect(directive).to.have.property('controllerAs');
+    });
+
+    it('should use the right controller', ()=>{
+      expect(directive.controller).to.equal(AssignUserController);
+    });
+
+    it('should have correct properties on isolate scope', () => {
+      const isolateScope = directiveElem.isolateScope();
+      expect(isolateScope.allUsers).to.be.a('array');
+      expect(isolateScope.currentUsers).to.be.a('array');
+      expect(isolateScope.onAddUser).to.be.a('function');
+      expect(isolateScope.onRemoveUser).to.be.a('function');
+    });
+
+    it('should render users from currentUsers', () => {
+      expect(directiveElem.html()).match(/user3/);
+    });
+  });
 });

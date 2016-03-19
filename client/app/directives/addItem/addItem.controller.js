@@ -28,7 +28,6 @@ class AddItemController {
     }
   }
 
-
   // Will update an existing entry if itemId is defined
   updateItem(){
     this.Factory.update(this.currentItem)
@@ -41,16 +40,16 @@ class AddItemController {
     .then(resp => {
       this.itemId = resp._id;
       this.currentItem = resp;
-        // Add all users to the new organization
-        this.currentUsers.forEach((user) => {
-          this.Factory.addToUser({
-            itemId: this.itemId,
-            userId: user._id
-          });
+      // Add all users to the new organization
+      this.currentUsers.forEach((user) => {
+
+        this.Factory.addToUser({
+          itemId: this.itemId,
+          userId: user._id
         });
       });
+    });
   }
-
 
   onAddUser(user){
     // Remove user from item on the server

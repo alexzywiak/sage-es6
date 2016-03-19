@@ -2,7 +2,6 @@
 class AddSubItemController {
   constructor($scope, $injector) {
     angular.extend(this, $scope);
-
     this.Factory = $injector.get(this.factoryName);
 
     this.currentItem = {};
@@ -15,7 +14,7 @@ class AddSubItemController {
 
   handleSubmit(){
     if(this.parentId){
-      this.Factory.createNew(this.currentItem)
+      return this.Factory.createNew(this.currentItem)
         .then(resp => console.log(resp));
     }
   }

@@ -16,7 +16,7 @@ export const addSubItemDirective = () => {
     transclude: true,
     link: (scope, element, attrs, ctrl, transclude) => {
       transclude(scope, (clone, scope) => {
-        element.append(clone);
+        angular.element(element[0].querySelector('.item-form-container')).prepend(clone);
       });
     }
   };
