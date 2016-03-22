@@ -17,7 +17,7 @@ class AddItemController {
     }
 
     this.User.getAll()
-    .then(users => {console.log(users); this.allUsers = users});
+    .then(users => {this.allUsers = users});
   }
 
   handleSubmit(){
@@ -31,7 +31,7 @@ class AddItemController {
   // Will update an existing entry if itemId is defined
   updateItem(){
     this.Factory.update(this.currentItem)
-    .then(resp => console.log(resp));
+    .then(resp => resp);
   }
 
   // Will create a new entry if itemId is not defined

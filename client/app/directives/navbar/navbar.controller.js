@@ -25,7 +25,6 @@ class NavbarController {
   }
 
   handleClick(click){
-    console.log('click');
     if(click){
       this[click]();
     }

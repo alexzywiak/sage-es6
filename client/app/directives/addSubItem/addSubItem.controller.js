@@ -15,7 +15,7 @@ class AddSubItemController {
   handleSubmit(){
     if(this.parentId){
       return this.Factory.createNew(this.currentItem)
-        .then(resp => console.log(resp));
+        .then(resp => resp);
     }
   }
 
