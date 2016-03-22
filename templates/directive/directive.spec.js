@@ -66,7 +66,6 @@ describe('<%= upCaseName %>', ()=>{
 
 
   describe('Directive', ()=>{
-    describe('Directive', ()=>{
 
       beforeEach(() => {
         scope.parentId = 'parentId';
