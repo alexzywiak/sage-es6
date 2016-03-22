@@ -22,9 +22,9 @@ describe('<%= upCaseName %>', ()=>{
     };
 
     // Register the mock factory on the module
-    window.module(<%= name %>.name, ($provide) => {
-      $provide.value('MockFactory', mockFactory);
-    });
+    // window.module(<%= name %>.name, ($provide) => {
+    //   $provide.value('MockFactory', mockFactory);
+    // });
 
     // Inject the dependencies
     inject(($compile, $rootScope, $injector, _$q_) => {
@@ -77,14 +77,14 @@ describe('<%= upCaseName %>', ()=>{
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<<%= name => 
+        `<<%- name %>> 
         parent-id="parentId"
         factory-name="MockFactory"      
         >
         <div>
         transcludedContent
         </div>
-        </<%= name %>>`
+        </<%- name %>>`
         ))(scope);
         scope.$digest();
         return compiledDirective;
