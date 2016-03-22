@@ -1,23 +1,5 @@
 <div>
-  <add-item
-  factory-name="Organization"
-  item-id="vm.organizationId"
-  >
-    <form ng-submit="vm.handleSubmit()">
-      <h4>Organization Title</h4>
-      <input type="text" ng-model="vm.currentItem.title">
-    </form>
-  </add-item>
-
-  <add-sub-item
-  factory-name="Project"
-  parent-id="vm.organizationId"
-  >
-    <form ng-submit="vm.handleSubmit()">
-      <h4>Project Title</h4>
-      <input type="text" ng-model="vm.currentItem.name">
-      <h4>Project Description</h4>
-      <input type="text" ng-model="vm.currentItem.description">
-    </form>
-  </add-sub-item>
+ <item-list items="vm.items">
+  <p>This is internal crap {{crap}}</p>
+ </item-list>
 </div>
