@@ -8,7 +8,8 @@ export const itemListDirective = () => {
     controllerAs: 'vm',
     restrict: 'E',
     scope: {
-      items: '='
+      itemList: '=',
+      factoryName: '='
     },
     compile: (tElem, tAttrs, tTransclude) => {
       // Get existing elements in the directive html (transcluded stuff)

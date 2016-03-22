@@ -66,7 +66,6 @@ describe('ItemList', ()=>{
 
 
   describe('Directive', ()=>{
-    describe('Directive', ()=>{
 
       beforeEach(() => {
         scope.parentId = 'parentId';
