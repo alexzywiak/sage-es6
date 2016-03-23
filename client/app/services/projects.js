@@ -74,7 +74,7 @@ export const projects = ($http) => {
     .then(resp => resp.data);
   };
 
-  return {getAll, getById, createNew, update, remove, addToUser, removeFromUser}
+  return {getAll, getById, createNew, update, getUsersById, remove, addToUser, removeFromUser}
 };
 
 projects.$inject = ['$http'];
