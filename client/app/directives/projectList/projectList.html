@@ -1,7 +1,13 @@
 <section class="projectList">
-  <project-list-item 
-  ng-repeat="project in vm.projects" 
-  project="project"
-  on-delete="vm.onDelete(_id)">
-  </project-list-item>
+  <div ng-repeat="project in vm.projects">
+    <project-list-item 
+    item="project"
+    factory-name="vm.factoryName">
+      <h4>{{item.name}}</h4>
+      <p>{{item.description}}</p>
+    </project-list-item>
+    {{vm.factoryName}}
+    <button class="edit-btn" ui-sref="/project/{{project._id}}">Edit</button>
+    <button class="delete-btn" ng-click="vm.onDelete(project._id)">Remove</button>
+  </div>
 </section>

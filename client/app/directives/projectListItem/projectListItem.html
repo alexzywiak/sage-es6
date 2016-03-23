@@ -1,6 +1,6 @@
 <section class="projectListItem">
-  <h4>{{project.name}}</h4>
-  <p>{{project.description}}</p>
-  <button class="edit-btn" ui-sref="/project/{{project._id}}">Edit</button>
-  <button class="delete-btn" ng-click="vm.handleDelete()">Remove</button>
+  <div class="transclude"></div>
+  <ul>
+    <li ng-repeat="user in vm.users">{{user.username}}</li>
+  </ul>
 </section>

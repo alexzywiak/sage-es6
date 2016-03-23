@@ -8,10 +8,16 @@ export const projectListItemDirective = () => {
     controller,
     controllerAs: 'vm',
     scope: {
-      project: '=',
-      onDelete: '&'
+      item: '=',
+      factoryName: '='
     },
     restrict: 'E',
-    replace: true
+    replace: true,
+    transclude: true,
+    link: (scope, element, attrs, ctrl, transclude) => {
+      transclude(scope, (clone, scope) => {
+        angular.element(element[0].querySelector('.transclude')).append(clone);
+      });
+    }
   };
 };
