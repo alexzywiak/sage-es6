@@ -1,4 +1,4 @@
-export const tasks = ($http) => {
+export const task = ($http) => {
   /**
   * Returns a single task by id
   * @param  {[string]} taskId [task._id]
@@ -106,4 +106,4 @@ export const tasks = ($http) => {
 };
 
 
-tasks.$inject = ['$http'];
+task.$inject = ['$http'];

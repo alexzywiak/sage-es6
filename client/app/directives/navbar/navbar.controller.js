@@ -9,14 +9,8 @@ class NavbarController {
       title: 'test',
       state: 'test'
     }, {
-    	title: 'login',
-    	state: 'login'
-    }, {
-    	title: 'signup',
-    	state: 'signup'
-    },{
-      title: 'logout',
-      click: 'logout'
+    	title: 'dashboard',
+    	state: 'dashboard'
     }];
   }
 

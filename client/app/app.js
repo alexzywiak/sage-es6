@@ -15,6 +15,7 @@ import {services} from './services/services';
 // gulp component --name=new-component
 import {navbar} from './directives/navBar/navBar';
 import {test} from './components/test/test';
+import {dashboard} from './components/dashboard/dashboard';
 
 angular.module('app', [
   uiRouter,
@@ -25,6 +26,7 @@ angular.module('app', [
   services.name,
 
   navbar.name,
-  test.name
+  test.name,
+  dashboard.name
 ])
 .directive('app', appDirective);

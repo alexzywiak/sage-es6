@@ -1,3 +1,29 @@
 <section class="dashboard">
-  <h1>Hey from {{ vm.greeting }}</h1>
+  <h1>Welcome {{vm.loggedInUser.username}}</h1>
+  <!-- Tasks -->
+  <h2>Task List</h2>
+  <item-list 
+    items="vm.loggedInUser.task_list"
+    route="task"
+    factory-name="Task">
+    <h1>{{item.name}}</h1>
+    <p>{{item.description}}</p>
+  </item-list>
+  <!-- Project -->
+  <h2>Project List</h2>
+  <item-list 
+    items="vm.loggedInUser.project_list"
+    route="project"
+    factory-name="Project">
+    <h1>{{item.name}}</h1>
+    <p>{{item.description}}</p>
+  </item-list>
+  <!-- Organization -->
+  <h2>Organization List</h2>
+  <item-list 
+    items="vm.loggedInUser.organization"
+    route="organization"
+    factory-name="Organization">
+    <h1>{{item.title}}</h1>
+  </item-list>
 </section>
