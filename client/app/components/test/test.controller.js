@@ -5,7 +5,7 @@ class TestController {
     this.User = User;
 
     this.projects = [];
-    this.project = {_id:0, name:'project0', description:'project0'};
+    this.factoryName = 'Project';
 
     this.loggedInUser = {};
 

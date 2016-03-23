@@ -1,0 +1,12 @@
+<section class="itemList">
+  <div ng-repeat="item in vm.items">
+    <item-list-entry 
+    item="item"
+    factory-name="vm.factoryName">
+      <h4>{{item.name}}</h4>
+      <p>{{item.description}}</p>
+    </item-list-entry>
+    <button class="edit-btn" ui-sref="/{{item}}/{{item._id}}">Edit</button>
+    <button class="delete-btn" ng-click="vm.onDelete(item._id)">Remove</button>
+  </div>
+</section>

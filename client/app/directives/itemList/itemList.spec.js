@@ -1,9 +1,9 @@
-import {taskListItem} from './taskListItem';
-import {TaskListItemController} from './taskListItem.controller';
-import {taskListItemDirective} from './taskListItem.directive';
-import template from './taskListItem.html';
+import {itemList} from './itemList';
+import {ItemListController} from './itemList.controller';
+import {itemListDirective} from './itemList.directive';
+import template from './itemList.html';
 
-describe('TaskListItem', ()=>{
+describe('ItemList', ()=>{
   let $rootScope,
   makeController,
   compile,
@@ -22,7 +22,7 @@ describe('TaskListItem', ()=>{
     };
 
     // Register the mock factory on the module
-    // window.module(taskListItem.name, ($provide) => {
+    // window.module(itemList.name, ($provide) => {
     //   $provide.value('MockFactory', mockFactory);
     // });
 
@@ -76,21 +76,21 @@ describe('TaskListItem', ()=>{
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<taskListItem 
+        `<itemList 
         parent-id="parentId"
         factory-name="MockFactory"      
         >
         <div>
         transcludedContent
         </div>
-        </taskListItem>`
+        </itemList>`
         ))(scope);
         scope.$digest();
         return compiledDirective;
       }
 
     // test the component/directive itself
-    let directive = taskListItemDirective();
+    let directive = itemListDirective();
 
     it('should use the right template',()=>{
       expect(directive.template).to.equal(template);
@@ -101,7 +101,7 @@ describe('TaskListItem', ()=>{
     });
 
     it('should use the right controller', ()=>{
-      expect(directive.controller).to.equal(TaskListItemController);
+      expect(directive.controller).to.equal(ItemListController);
     });
   });
 });

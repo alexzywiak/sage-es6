@@ -1,8 +1,8 @@
-import './projectListItem.styl';
-import {ProjectListItemController as controller} from './projectListItem.controller';
-import template from './projectListItem.html';
+import './itemListEntry.styl';
+import {ItemListEntryController as controller} from './itemListEntry.controller';
+import template from './itemListEntry.html';
 
-export const projectListItemDirective = () => {
+export const itemListEntryDirective = () => {
   return {
     template,
     controller,
