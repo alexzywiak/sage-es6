@@ -78,7 +78,7 @@ describe('<%= upCaseName %>', ()=>{
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<<%= name => 
+        `<<%= name %> 
         parent-id="parentId"
         factory-name="MockFactory"      
         >
