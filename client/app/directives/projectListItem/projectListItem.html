@@ -1,3 +1,6 @@
 <section class="projectListItem">
-  <h1>Hey from {{ vm.greeting }}</h1>
+  <h4>{{project.name}}</h4>
+  <p>{{project.description}}</p>
+  <button class="edit-btn" ui-sref="/project/{{project._id}}">Edit</button>
+  <button class="delete-btn" ng-click="vm.handleDelete()">Remove</button>
 </section>

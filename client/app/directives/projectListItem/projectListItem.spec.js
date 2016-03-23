@@ -22,9 +22,9 @@ describe('ProjectListItem', ()=>{
     };
 
     // Register the mock factory on the module
-    // window.module(projectListItem.name, ($provide) => {
-    //   $provide.value('MockFactory', mockFactory);
-    // });
+    window.module(projectListItem.name, ($provide) => {
+      $provide.value('MockFactory', mockFactory);
+    });
 
     // Inject the dependencies
     inject(($compile, $rootScope, $injector, _$q_) => {
@@ -68,22 +68,17 @@ describe('ProjectListItem', ()=>{
   describe('Directive', ()=>{
 
       beforeEach(() => {
-        scope.parentId = 'parentId';
-        scope.MockFactory = 'MockFactory';
+        scope.project = {_id: 0, 'name': 'project0', description: 'description'};
         directiveElem = getCompiledElement();
       });
 
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<projectListItem 
-        parent-id="parentId"
-        factory-name="MockFactory"      
+        `<project-list-item 
+        project="project"
         >
-        <div>
-        transcludedContent
-        </div>
-        </projectListItem>`
+        </project-list-item>`
         ))(scope);
         scope.$digest();
         return compiledDirective;
@@ -96,13 +91,35 @@ describe('ProjectListItem', ()=>{
       expect(directive.template).to.equal(template);
     });
 
-    it('should use controllerAs', ()=>{
-      expect(directive).to.have.property('controllerAs');
+    it('should have access to project on isolate scope', () => {
+      let isolateScope = directiveElem.isolateScope();
+      expect(isolateScope.project).to.eql(scope.project);
     });
 
-    it('should use the right controller', ()=>{
-      expect(directive.controller).to.equal(ProjectListItemController);
+    it('should render the project name', () => {
+      expect(directiveElem.html()).to.match(/project0/);
     });
+
+    it('should render the project description', () => {
+      expect(directiveElem.html()).to.match(/description/);
+    });
+
+    it('should have an edit button linking to that project', () => {
+      let btns = $(directiveElem).find('.edit-btn');
+      expect(btns.length).to.equal(1);
+      expect($(btns[0]).attr('ui-sref')).to.equal('/project/0');
+    });
+
+    it('should have a delete button that calls the handle delete function', () => {
+      let directiveScope = directiveElem.isolateScope();
+      sinon.spy(directiveScope, 'handleDelete');
+      console.log(typeof directiveScope.handleDelete);
+      let btns = $(directiveElem).find('.delete-btn');
+      expect(btns.length).to.equal(1);
+      $(btns[0]).trigger('click');
+      expect(directiveScope.handleDelete.called).to.be.true;
+      directiveScope.handleDelete.restore();
+    });      
   });
 });
 

@@ -15,6 +15,9 @@ import angular from 'angular';
 // for mocking out dependencies, we need this
 import mocks from 'angular-mocks';
 
+import $ from 'jquery';
+window.$ = $;
+
 // Ok, this is kinda cray cray. We can use the the context method on
 // require that webpack created in order to tell webpack
 // what files we actually want to require or import.

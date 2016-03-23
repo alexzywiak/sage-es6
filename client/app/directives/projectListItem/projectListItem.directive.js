@@ -7,7 +7,10 @@ export const projectListItemDirective = () => {
     template,
     controller,
     controllerAs: 'vm',
-    scope: {},
+    scope: {
+      project: '=',
+      onDelete: '&'
+    },
     restrict: 'E',
     replace: true
   };

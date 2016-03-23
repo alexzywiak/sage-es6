@@ -7,7 +7,9 @@ export const projectListDirective = () => {
     template,
     controller,
     controllerAs: 'vm',
-    scope: {},
+    scope: {
+      projects: '='
+    },
     restrict: 'E',
     replace: true
   };

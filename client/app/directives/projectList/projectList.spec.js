@@ -68,17 +68,17 @@ describe('ProjectList', ()=>{
   describe('Directive', ()=>{
 
       beforeEach(() => {
-        scope.projects = [{_id: 0, name: 'project0'}, {_id: 1, name: 'project1'}];
+        scope.projects = [{_id:0, name:'project0'}, {_id:1, name:'project1'}];
         directiveElem = getCompiledElement();
       });
 
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<projectList 
+        `<project-list 
         projects="projects"    
         >
-        </projectList>`
+        </project-list>`
         ))(scope);
         scope.$digest();
         return compiledDirective;
@@ -102,6 +102,16 @@ describe('ProjectList', ()=>{
     it('should have access to project list on isolate scope', () => {
       let isolateScope = directiveElem.isolateScope();
       expect(isolateScope.projects).to.eql(scope.projects);
+    });
+
+    it('should have access to project list on isolate scope', () => {
+      let isolateScope = directiveElem.isolateScope();
+      expect(isolateScope.projects).to.eql(scope.projects);
+    });
+
+    it('should render each project', () => {
+      let projects = $(directiveElem).find('.project');
+      expect(projects.length).to.equal(2);
     });
   });
 });

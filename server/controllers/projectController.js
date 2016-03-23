@@ -115,7 +115,7 @@ module.exports = {
    * @return {[object]}        [removed project]
    */
   removeProject: function(req, res, next) {
-    Project.findOneAndRemove(req.params.id, function(err, project) {
+    Project.findOneAndRemove({_id: req.params.id}, function(err, project) {
       if (err) return res.sendStatus(500, err);
       if (!project) {
         return res.sendStatus(404, err);
