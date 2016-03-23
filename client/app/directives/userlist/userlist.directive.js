@@ -1,16 +1,17 @@
-import './userlist.styl';
-import {UserlistController as controller} from './userlist.controller';
-import template from './userlist.html';
+import './userList.styl';
+import {UserListController as controller} from './userList.controller';
+import template from './userList.html';
 
-export const userlistDirective = () => {
+export const userListDirective = () => {
   return {
     template,
     controller,
     controllerAs: 'vm',
     scope: {
-      itemId: '='
+      item: '=',
+      factoryName: '='
     },
     restrict: 'E',
-    replace: true
+    replace: true,
   };
 };

@@ -1,3 +1,5 @@
-<section class="userlist">
-  <h1>Hey from {{ vm.itemId }}</h1>
+<section class="userList">
+  <ul>
+    <li ng-repeat="user in vm.users">{{user.username}}</li>
+  </ul>
 </section>

@@ -9,9 +9,10 @@ export const itemListDirective = () => {
     controllerAs: 'vm',
     scope: {
       items: '=',
-      factoryName: '='
+      factoryName: '=',
+      route: '@'
     },
     restrict: 'E',
-    replace: true
+    transclude: true
   };
 };

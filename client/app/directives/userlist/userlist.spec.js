@@ -1,9 +1,9 @@
-import {userlist} from './userlist';
-import {UserlistController} from './userlist.controller';
-import {userlistDirective} from './userlist.directive';
-import template from './userlist.html';
+import {userList} from './userList';
+import {UserListController} from './userList.controller';
+import {userListDirective} from './userList.directive';
+import template from './userList.html';
 
-describe('Userlist', ()=>{
+describe('UserList', ()=>{
   let $rootScope,
   makeController,
   compile,
@@ -22,7 +22,7 @@ describe('Userlist', ()=>{
     };
 
     // Register the mock factory on the module
-    // window.module(userlist.name, ($provide) => {
+    // window.module(userList.name, ($provide) => {
     //   $provide.value('MockFactory', mockFactory);
     // });
 
@@ -67,37 +67,41 @@ describe('Userlist', ()=>{
 
   describe('Directive', ()=>{
 
-    beforeEach(() => {
-      scope.parentId = 'parentId';
-      scope.MockFactory = 'MockFactory';
-      directiveElem = getCompiledElement();
-    });
+      beforeEach(() => {
+        scope.parentId = 'parentId';
+        scope.MockFactory = 'MockFactory';
+        directiveElem = getCompiledElement();
+      });
 
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<userlist> 
+        `<userList 
         parent-id="parentId"
         factory-name="MockFactory"      
         >
         <div>
         transcludedContent
         </div>
-        </userlist>`
+        </userList>`
         ))(scope);
         scope.$digest();
         return compiledDirective;
       }
 
     // test the component/directive itself
-    let directive = userlistDirective();
+    let directive = userListDirective();
+
+    it('should use the right template',()=>{
+      expect(directive.template).to.equal(template);
+    });
 
     it('should use controllerAs', ()=>{
       expect(directive).to.have.property('controllerAs');
     });
 
     it('should use the right controller', ()=>{
-      expect(directive.controller).to.equal(UserlistController);
+      expect(directive.controller).to.equal(UserListController);
     });
   });
 });

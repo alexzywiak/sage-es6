@@ -1,9 +1,9 @@
-import {itemListEntry} from './itemListEntry';
-import {ItemListEntryController} from './itemListEntry.controller';
-import {itemListEntryDirective} from './itemListEntry.directive';
-import template from './itemListEntry.html';
+import {dashboard} from './dashboard';
+import {DashboardController} from './dashboard.controller';
+import {dashboardDirective} from './dashboard.directive';
+import template from './dashboard.html';
 
-describe('ItemListEntry', ()=>{
+describe('Dashboard', ()=>{
   let $rootScope,
   makeController,
   compile,
@@ -22,9 +22,9 @@ describe('ItemListEntry', ()=>{
     };
 
     // Register the mock factory on the module
-    // window.module(itemListEntry.name, ($provide) => {
-    //   $provide.value('MockFactory', mockFactory);
-    // });
+    window.module(dashboard.name, ($provide) => {
+      $provide.value('MockFactory', mockFactory);
+    });
 
     // Inject the dependencies
     inject(($compile, $rootScope, $injector, _$q_) => {
@@ -48,8 +48,11 @@ describe('ItemListEntry', ()=>{
     mockFactory.createNew.restore();
   });
 
-  describe('Controller', ()=>{
+  describe('Module', ()=>{
 
+  });
+
+  describe('Controller', ()=>{
     beforeEach(inject((_$rootScope_)=>{
       $rootScope = _$rootScope_;
       makeController = (scope, injector)=>{
@@ -59,13 +62,12 @@ describe('ItemListEntry', ()=>{
   });
 
   describe('Template', ()=>{
-    // it('should have name in template [REMOVE]', ()=>{
-    //   expect(template).to.match(/{{\s?vm\.greeting\s?}}/g);
-    // });
+
   });
 
 
   describe('Directive', ()=>{
+    describe('Directive', ()=>{
 
       beforeEach(() => {
         scope.parentId = 'parentId';
@@ -76,21 +78,20 @@ describe('ItemListEntry', ()=>{
     // Create mocked out directive by creating fake element
     function getCompiledElement(){
       let compiledDirective = compile(angular.element(
-        `<itemListEntry 
+        `<dashboard 
         parent-id="parentId"
         factory-name="MockFactory"      
         >
         <div>
         transcludedContent
         </div>
-        </itemListEntry>`
+        </dashboard>`
         ))(scope);
         scope.$digest();
         return compiledDirective;
-      }
+    }
 
-    // test the component/directive itself
-    let directive = itemListEntryDirective();
+    let directive = dashboardDirective();
 
     it('should use the right template',()=>{
       expect(directive.template).to.equal(template);
@@ -101,8 +102,9 @@ describe('ItemListEntry', ()=>{
     });
 
     it('should use the right controller', ()=>{
-      expect(directive.controller).to.equal(ItemListEntryController);
+      expect(directive.controller).to.equal(DashboardController);
     });
   });
 });
+
 
