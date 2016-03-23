@@ -7,7 +7,7 @@ class AddItemController {
     
     this.Factory = $injector.get(this.factoryName);
     this.User = User;
-
+    
     this.currentItem = {};
     this.currentUsers = [];
     this.allUsers = [];

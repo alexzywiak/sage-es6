@@ -11,6 +11,9 @@ class NavbarController {
     }, {
     	title: 'dashboard',
     	state: 'dashboard'
+    }, {
+      title: 'organization',
+      state: 'organization'
     }];
   }
 

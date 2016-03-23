@@ -9,7 +9,7 @@ export const addSubItemDirective = () => {
     controllerAs: 'vm',
     scope: {
       parentId: '=',
-      factoryName: '='
+      factoryName: '@'
     },
     restrict: 'E',
     replace: true,

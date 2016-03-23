@@ -1,7 +1,7 @@
 <section class="itemList">
   <div ng-repeat="item in vm.items" inject>
     <user-list item="item" factory-name="vm.factoryName"></user-list>
-    <button ui-sref="/{{vm.route}}/{{item._id}}">Edit</button>
+    <button ui-sref="{{vm.route}}({id: item._id})">Edit</button>
     <button ng-click="vm.onDelete(item._id)">Delete</button>
   </div>
 </section>

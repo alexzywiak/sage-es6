@@ -1,0 +1,33 @@
+<section class="organization">
+  
+  <!-- Add/Edit Organization -->
+  <add-item
+    item-id="vm.organizationId"
+    factory-name="Organization"
+  >
+  <h1>{{vm.currentItem.title}}</h1>
+  <input type="text" ng-model="vm.currentItem.title">
+  </add-item>
+
+  <!-- Add new Projects to Organization -->
+  <add-sub-item
+    parent-id="vm.currentItem._id"
+    factory-name="Project"
+  >
+    <h1>Add a New Project</h1>
+    <label>Name</label>
+    <input type="text" ng-model="currentItem.name">
+    <label>Description</label>
+    <input type="text" ng-model="currentItem.description">
+  </add-sub-item>
+
+  <!-- List Current Projects -->
+  <item-list
+    items="vm.organization.projects"
+    factory-name="Project"
+    route="project"
+  >
+  <h1>{{item.name}}</h1>
+  <p>{{item.description}}</p>
+  </item-list>
+</section>
