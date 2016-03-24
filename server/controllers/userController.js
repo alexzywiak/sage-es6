@@ -73,7 +73,7 @@ module.exports = {
   },
 
   addTaskToUser: function(req, res, next) {
-    console.log(req.body);
+
     var userId = req.body.userId;
     var taskId = req.body.taskId;
 
@@ -135,6 +135,7 @@ module.exports = {
   },
 
   addOrganizationToUser: function(req, res, next) {
+
     var userId = req.body.userId;
     var orgId = req.body.orgId;
 
@@ -154,6 +155,7 @@ module.exports = {
         Org.findOne({
           _id: orgId
         }, function(err, org) {
+          console.log(org);
           if (err) {
             return res.status(500).send();
           }
@@ -169,6 +171,8 @@ module.exports = {
             res.status(200).send(user);
           });
         });
+      } else {
+        res.status(200).send(user);
       }
     });
   },
