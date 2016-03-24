@@ -13,7 +13,7 @@ class NavbarController {
     	state: 'dashboard'
     }, {
       title: 'organization',
-      state: 'organization'
+      state: 'organization({id:""})'
     }];
   }
 

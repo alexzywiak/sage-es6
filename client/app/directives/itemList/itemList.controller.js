@@ -10,11 +10,11 @@ class ItemListController {
     });
   }
 
-  onDelete(_id){
-    this.Factory.remove(_id)
+  onDelete(id){
+    this.Factory.remove(id)
       .then(() => {
         this.items = this.items.filter(item => {
-          return item._id !== _id;
+          return item._id !== id;
         });
       });
   }

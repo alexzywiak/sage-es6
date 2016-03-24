@@ -2,11 +2,13 @@
 class OrganizationController {
   constructor($stateParams, Organization) {
     this.organizationId = $stateParams.id;
-  
+
     this.organization = {};
 
-    Organization.getById(this.organizationId)
-      .then(org => this.organization = org);
+    if(this.organizationId){
+      Organization.getById(this.organizationId)
+      .then(org => this.organization = org);  
+    }
   }
 
   onUpdate(updatedOrg){

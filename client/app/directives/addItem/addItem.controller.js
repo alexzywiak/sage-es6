@@ -2,9 +2,11 @@ import _ from 'lodash';
 
 class AddItemController {
 
-  constructor($scope, $injector, User) {
+  constructor($scope, $injector, $q, $state, User) {
     angular.extend(this, $scope);
     
+    this.$q = $q;
+    this.$state = $state;
     this.Factory = $injector.get(this.factoryName);
     this.User = User;
 
@@ -48,12 +50,15 @@ class AddItemController {
       this.currentItem._id = resp._id;
       this.currentItem = resp;
       // Add all users to the new organization
-      this.currentUsers.forEach((user) => {
-
-        this.Factory.addToUser({
-          itemId: this.currentItem._id,
-          userId: user._id
-        });
+      this.$q.all(
+        this.currentUsers.map(user => {
+          return this.Factory.addToUser({
+            itemId: this.currentItem._id,
+            userId: user._id
+          });
+        })
+      ).then(() => {
+        this.$state.go('organization', {id: this.currentItem._id});
       });
     });
   }
@@ -61,7 +66,6 @@ class AddItemController {
   onAddUser(user){
     // Remove user from item on the server
     if(this.currentItem._id){    
-      console.log(user);
       this.Factory.addToUser({
         itemId: this.currentItem._id,
         userId: user._id
@@ -84,20 +88,8 @@ class AddItemController {
       return currentUser._id === user._id;
     });
   }
-
-  // If itemId is defined will look up data from db
-  // getCurrentItemData(){
-  //   this.Factory.getById(this.currentItem._id)
-  //   .then(item => {
-  //     this.currentItem = item;
-  //     return this.Factory.getUsersById(this.currentItem._id);
-  //   })
-  //   .then(itemUsers => {
-  //     this.currentUsers = itemUsers;
-  //   });
-  // }
 }
 
-AddItemController.$injector = ['$scope', '$injector', 'User'];
+AddItemController.$injector = ['$scope', '$injector', '$q', '$state', 'User'];
 
 export {AddItemController};

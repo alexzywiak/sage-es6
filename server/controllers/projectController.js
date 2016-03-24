@@ -77,7 +77,7 @@ module.exports = {
               console.log(err);
               return res.status(500).send(err);
             }
-            res.status(201).send(org);
+            res.status(201).send(project);
           });
         });
       } else {

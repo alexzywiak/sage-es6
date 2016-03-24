@@ -18,10 +18,8 @@ class AddSubItemController {
 
   handleSubmit(){
     if(this.parentId){
-      this.itemList.push(this.currentItem);
-      console.log(this.currentItem);
       return this.Factory.createNew(this.currentItem)
-        .then(resp => resp);
+        .then(resp => this.itemList.push(resp));
     }
   }
 
