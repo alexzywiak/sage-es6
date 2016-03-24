@@ -54,15 +54,17 @@ export const organization = ($http) => {
    * @param {[object]} data [{organizationId:<REQUIRED>, userId:<REQUIRED>}]
    */
    const addToUser = (data) => {
+    console.log(data);
     return $http({
       method: 'POST',
-      url: '/api/users/orgs',
+      url: 'api/users/turkey',
       data: {
         userId: data.userId,
         orgId: data.itemId
       }
     })
     .then(function(resp) {
+      console.log('responding!', resp);
       return resp.data;
     });
   };
@@ -70,7 +72,7 @@ export const organization = ($http) => {
   const removeFromUser = (data) => {
     return $http({
       method: 'POST',
-      url: '/api/users/orgs/remove',
+      url: 'api/users/orgs/remove',
       data: {
         userId: data.userId,
         orgId: data.itemId

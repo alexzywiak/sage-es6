@@ -8,7 +8,7 @@ export const addItemDirective = () => {
     controller,
     controllerAs: 'vm',
     scope: {
-      itemId: '=',
+      currentItem:'=',
       factoryName: '@'
     },
     restrict: 'E',

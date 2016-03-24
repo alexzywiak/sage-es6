@@ -6,6 +6,10 @@ class AddSubItemController {
 
     this.currentItem = {};
 
+    $scope.$watch('itemList', itemList => {
+      this.itemList = itemList;
+    });
+
     $scope.$watch('parentId', (parentId) => {
       this.parentId = parentId;
       this.currentItem.parentId = this.parentId;
@@ -14,6 +18,8 @@ class AddSubItemController {
 
   handleSubmit(){
     if(this.parentId){
+      this.itemList.push(this.currentItem);
+      console.log(this.currentItem);
       return this.Factory.createNew(this.currentItem)
         .then(resp => resp);
     }

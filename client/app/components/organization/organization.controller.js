@@ -2,7 +2,7 @@
 class OrganizationController {
   constructor($stateParams, Organization) {
     this.organizationId = $stateParams.id;
-    
+  
     this.organization = {};
 
     Organization.getById(this.organizationId)

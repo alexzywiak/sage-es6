@@ -7,21 +7,20 @@ class AddItemController {
     
     this.Factory = $injector.get(this.factoryName);
     this.User = User;
-    
-    this.currentItem = {};
+
     this.currentUsers = [];
     this.allUsers = [];
 
-    if(this.itemId){
-      this.getCurrentItemData();
-    }
+    $scope.$watch('currentItem', item => {
+      this.currentItem = item;
+    });
 
     this.User.getAll()
     .then(users => {this.allUsers = users});
   }
 
   handleSubmit(){
-    if(this.itemId){
+    if(this.currentItem._id){
       this.updateItem();
     } else {
       this.createNewItem();
@@ -38,13 +37,13 @@ class AddItemController {
   createNewItem(){
     this.Factory.createNew(this.currentItem)
     .then(resp => {
-      this.itemId = resp._id;
+      this.currentItem._id = resp._id;
       this.currentItem = resp;
       // Add all users to the new organization
       this.currentUsers.forEach((user) => {
 
         this.Factory.addToUser({
-          itemId: this.itemId,
+          itemId: this.currentItem._id,
           userId: user._id
         });
       });
@@ -53,9 +52,10 @@ class AddItemController {
 
   onAddUser(user){
     // Remove user from item on the server
-    if(this.itemId){    
+    if(this.currentItem._id){    
+      console.log(user);
       this.Factory.addToUser({
-        itemId: this.itemId,
+        itemId: this.currentItem._id,
         userId: user._id
       });
     }
@@ -65,9 +65,9 @@ class AddItemController {
 
   onRemoveUser(user){
     // Remove user from item on server
-    if(this.itemId){    
+    if(this.currentItem._id){    
       this.Factory.removeFromUser({
-        itemId: this.itemId,
+        itemId: this.currentItem._id,
         userId: user._id
       });
     }
@@ -78,16 +78,16 @@ class AddItemController {
   }
 
   // If itemId is defined will look up data from db
-  getCurrentItemData(){
-    this.Factory.getById(this.itemId)
-    .then(item => {
-      this.currentItem = item;
-      return this.Factory.getUsersById(this.itemId);
-    })
-    .then(itemUsers => {
-      this.currentUsers = itemUsers;
-    });
-  }
+  // getCurrentItemData(){
+  //   this.Factory.getById(this.currentItem._id)
+  //   .then(item => {
+  //     this.currentItem = item;
+  //     return this.Factory.getUsersById(this.currentItem._id);
+  //   })
+  //   .then(itemUsers => {
+  //     this.currentUsers = itemUsers;
+  //   });
+  // }
 }
 
 AddItemController.$injector = ['$scope', '$injector', 'User'];
