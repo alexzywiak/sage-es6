@@ -4,9 +4,9 @@
     <input type="text" ng-model="vm.searchCurrentUsers" placeholder="Search...">
   </div>
   <div class="current-user-list">
-    <a href="#" ng-click="vm.handleRemoveUser($index)" ng-repeat="user in vm.currentUsers | filter:vm.searchCurrentUsers">
+    <span ng-click="vm.handleRemoveUser($index)" ng-repeat="user in vm.currentUsers | filter:vm.searchCurrentUsers">
       <span>{{user.username}}</span>
-    </a>
+    </span>
   </div>
   <hr>
   <div class="user-list-header">
@@ -14,8 +14,8 @@
     <input type="text" ng-model="vm.searchAllUsers" placeholder="Search...">
   </div>
   <div class="all-user-list">
-    <a href="#" ng-click="vm.handleAddUser($index)" ng-repeat="user in vm.filteredAllUsers">
+    <span ng-click="vm.handleAddUser($index)" ng-repeat="user in vm.filteredAllUsers">
       <span>{{user.username}}</span>
-    </a>
+    </span>
   </div>
 </section>

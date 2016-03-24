@@ -57,7 +57,7 @@ export const organization = ($http) => {
     console.log(data);
     return $http({
       method: 'POST',
-      url: 'api/users/turkey',
+      url: 'api/users/orgs',
       data: {
         userId: data.userId,
         orgId: data.itemId

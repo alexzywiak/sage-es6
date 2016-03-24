@@ -13,10 +13,18 @@ class AddItemController {
 
     $scope.$watch('currentItem', item => {
       this.currentItem = item;
+      this.getCurrentUsers();
     });
 
     this.User.getAll()
     .then(users => {this.allUsers = users});
+  }
+
+  getCurrentUsers(){
+    if(this.currentItem._id && !this.currentUsers.length){
+      this.Factory.getUsersById(this.currentItem._id)
+        .then( users => this.currentUsers = users);
+    }
   }
 
   handleSubmit(){
