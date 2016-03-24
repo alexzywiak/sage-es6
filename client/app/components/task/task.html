@@ -1,0 +1,14 @@
+<section class="task">
+
+  <!-- Add/Edit Organization -->
+  <add-item
+    current-item="vm.task"
+    factory-name="Task">
+
+    <!-- Transcluded Content -->
+    <input type="text" ng-model="vm.currentItem.name">
+    <input type="text" ng-model="vm.currentItem.description">
+    <input type="checkbox" ng-model="vm.currentItem.isCompleted" ng-click="vm.handleSubmit()">
+  </add-item>
+
+</section>

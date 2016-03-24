@@ -17,6 +17,8 @@ import {navbar} from './directives/navBar/navBar';
 import {test} from './components/test/test';
 import {dashboard} from './components/dashboard/dashboard';
 import {organization} from './components/organization/organization';
+import {project} from './components/project/project';
+import {task} from './components/task/task';
 
 angular.module('app', [
   uiRouter,
@@ -29,6 +31,8 @@ angular.module('app', [
   navbar.name,
   test.name,
   dashboard.name,
-  organization.name
+  organization.name,
+  project.name,
+  task.name
 ])
 .directive('app', appDirective);

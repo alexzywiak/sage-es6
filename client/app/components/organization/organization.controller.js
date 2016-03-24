@@ -10,10 +10,6 @@ class OrganizationController {
       .then(org => this.organization = org);  
     }
   }
-
-  onUpdate(updatedOrg){
-    this.organization = updatedOrg;
-  }
 }
 
 OrganizationController.$inject = ['$stateParams', 'Organization'];

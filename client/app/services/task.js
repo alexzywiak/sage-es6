@@ -21,7 +21,7 @@ export const task = ($http) => {
     return $http({
       method: 'PUT',
       url: '/api/tasks/',
-      data: JSON.stringify(data)
+      data: data
     })
     .then((resp) => resp.data);
   };
@@ -56,10 +56,11 @@ export const task = ($http) => {
   * @return {[object]}      [updated project]
   */
   const createNew = (data) => {
+    data.projectId = data.parentId;
     return $http({
       method: 'POST',
       url: '/api/tasks/create',
-      data: JSON.stringify(data)
+      data: data
     })
     .then((resp) => resp.data);
   };
