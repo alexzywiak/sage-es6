@@ -9,7 +9,7 @@ const injectDirective = () => {
       let innerScope = scope.$new();
 
       transclude(innerScope, (clone) => {
-        element.prepend(clone);
+        element.find('span').append(clone);
         element.on('$destroy', () => {
           innerScope.$destroy();
         });

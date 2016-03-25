@@ -13,6 +13,7 @@ export const itemListDirective = () => {
       route: '@'
     },
     restrict: 'E',
+    replace: true,
     transclude: true
   };
 };
