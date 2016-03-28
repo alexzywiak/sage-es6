@@ -1,29 +1,54 @@
 <section class="dashboard">
   <h1>Welcome {{vm.loggedInUser.username}}</h1>
   <!-- Tasks -->
-  <h2>Task List</h2>
-  <item-list 
-    items="vm.loggedInUser.task_list"
-    route="task"
-    factory-name="Task">
-    <h1>{{item.name}}</h1>
-    <p>{{item.description}}</p>
-  </item-list>
+ <div class="row">
+   <div class="col-md-12">
+      <h2>Task List</h2>
+      <item-list 
+       items="vm.loggedInUser.task_list"
+       route="task"
+       factory-name="Task">
+       <div class="row">
+        <div class="col-md-2 text-center checkbox-container">
+          
+          <span ng-click="vm.toggleComplete(item)">
+            <span ng-show="item.isCompleted" class="glyphicon glyphicon-ok-sign"></span>
+            <span ng-show="!item.isCompleted" class="glyphicon glyphicon-remove-sign"></span>
+          </span>
+
+        </div>
+         <div class="col-md-10">
+            <h3>{{item.name}}</h3>
+            <p>{{item.description}}</p>
+          </div>
+        </div>
+     </item-list>
+   </div>
+ </div>
+
   <!-- Project -->
-  <!-- <h2>Project List</h2>
-  <item-list 
-    items="vm.loggedInUser.project_list"
-    route="project"
-    factory-name="Project">
-    <h1>{{item.name}}</h1>
-    <p>{{item.description}}</p>
-  </item-list> -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Project List</h2>
+      <item-list 
+        items="vm.loggedInUser.project_list"
+        route="project"
+        factory-name="Project">
+        <h1>{{item.name}}</h1>
+        <p>{{item.description}}</p>
+      </item-list>
+    </div>
+  </div>
   <!-- Organization -->
-  <!-- <h2>Organization List</h2>
-  <item-list 
-    items="vm.loggedInUser.organization"
-    route="organization"
-    factory-name="Organization">
-    <h1>{{item.title}}</h1>
-  </item-list> -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Organization List</h2>
+      <item-list 
+        items="vm.loggedInUser.organization"
+        route="organization"
+        factory-name="Organization">
+        <h1>{{item.title}}</h1>
+      </item-list>
+    </div>
+  </div>
 </section>

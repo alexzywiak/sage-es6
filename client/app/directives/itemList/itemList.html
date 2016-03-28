@@ -1,10 +1,30 @@
 <section class="itemList">
-  <div class="list-item" ng-repeat="item in vm.items" inject>
-    <span class="transcluded-content"></span>
-    <div class="item-content">
-      <user-list class="user-list" item="item" factory-name="vm.factoryName"></user-list>
-      <button class="btn-primary" ui-sref="{{vm.route}}({id: item._id})">Edit</button>
-      <button class="btn-danger" ng-click="vm.onDelete(item._id)">Delete</button>
-    </div>
-  </div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in vm.items" inject>
+      <div class="row">
+
+        <div class="col-md-8">
+          <span class="transcluded-content"></span>
+        </div>
+
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <user-list class="user-list" item="item" factory-name="vm.factoryName"></user-list>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-primary" ui-sref="{{vm.route}}({id: item._id})">Edit</button>
+              </div> 
+              <div class="col-md-6">
+                <button class="btn btn-danger" ng-click="vm.onDelete(item._id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </li>
+  </ul>
 </section>

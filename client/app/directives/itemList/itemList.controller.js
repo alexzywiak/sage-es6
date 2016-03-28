@@ -10,6 +10,11 @@ class ItemListController {
     });
   }
 
+  toggleComplete(item){
+    item.isCompleted = !item.isCompleted;
+    this.Factory.update(item);
+  }
+
   onDelete(id){
     this.Factory.remove(id)
       .then(() => {

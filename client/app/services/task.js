@@ -41,7 +41,6 @@ export const task = ($http) => {
   * @return {[array]}         [array of user objects]
   */
   const getUsersById = (taskId) => {
-    console.log("in factory", taskId);
     return $http({
       method: 'GET',
       url: '/api/tasks/users/' + taskId

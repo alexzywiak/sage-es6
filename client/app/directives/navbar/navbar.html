@@ -1,9 +1,14 @@
-<nav class="navbar">
-    <a ui-sref="/" class="logo">{{vm.logo}}</a>
-    <a class="links"
-      ng-repeat="link in vm.links" 
-      ui-sref="{{link.state || '#'}}" 
-      ng-click="vm.handleClick(link.click)">
-        {{link.title}}
-    </a>
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <a ui-sref="/" class="navbar-brand">{{vm.logo}}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ng-repeat="link in vm.links" >
+        <a
+         ui-sref="{{link.state || '#'}}" 
+         ng-click="vm.handleClick(link.click)">
+           {{link.title}}
+       </a>
+      </li>
+    </ul>
 </nav>
