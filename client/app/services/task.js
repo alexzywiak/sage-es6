@@ -69,10 +69,10 @@ export const task = ($http) => {
   * @param  {[object]} task [description]
   * @return {[object]}        [removed task]
   */
-  const remove = (task) => {
+  const remove = (id) => {
     return $http({
       method: 'DELETE',
-      url: '/api/tasks/' + task._id
+      url: '/api/tasks/' + id
     })
     .then((resp) => resp.data);
   };

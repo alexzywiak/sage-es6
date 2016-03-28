@@ -1,17 +1,23 @@
 <section class="addItem">
 
-  <!-- Transclusion Point -->
-  <div class="item-form-container">
-    <button ng-click="vm.handleSubmit()">Submit</button>
-  </div>
-  <!-- Assign User Directive -->
-  <div class="assign-user-container">
-    <assign-user 
-    current-users="vm.currentUsers"
-    all-users="vm.allUsers"
-    on-add-user="vm.onAddUser(user)"
-    on-remove-user="vm.onRemoveUser(user)"
-    ></assign-user>
+  <div class="row">
+    <!-- Transclusion Point -->
+    <div class="col-md-6">
+      <form>
+        <div class="item-form-container form-group">
+            <button class="btn btn-primary btn-block" ng-click="vm.handleSubmit()">Submit</button>
+        </div>
+      </form>
+    </div>
+    <!-- Assign User Directive -->
+    <div class="col-md-6 assign-user-container">
+      <assign-user 
+      current-users="vm.currentUsers"
+      all-users="vm.allUsers"
+      on-add-user="vm.onAddUser(user)"
+      on-remove-user="vm.onRemoveUser(user)"
+      ></assign-user>
+    </div>
   </div>
 
 </section>

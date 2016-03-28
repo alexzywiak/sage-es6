@@ -1,7 +1,11 @@
 <section class="assignUser">
-  <div class="user-list-header">
-  <h6>Current Users</h6>
-    <input type="text" ng-model="vm.searchCurrentUsers" placeholder="Search...">
+  <div class="user-list-header row">
+    <div class="col-md-6">
+      <h6>Current Users</h6>
+    </div>
+    <div class="md-col-6">
+      <input type="text" ng-model="vm.searchCurrentUsers" placeholder="Search...">
+    </div>
   </div>
   <div class="current-user-list">
     <span ng-click="vm.handleRemoveUser($index)" ng-repeat="user in vm.currentUsers | filter:vm.searchCurrentUsers">
@@ -10,7 +14,7 @@
   </div>
   <hr>
   <div class="user-list-header">
-  <h6>Available Users</h6>
+    <h6>Available Users</h6>
     <input type="text" ng-model="vm.searchAllUsers" placeholder="Search...">
   </div>
   <div class="all-user-list">
