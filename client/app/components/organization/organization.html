@@ -1,14 +1,17 @@
 <section class="organization">
-  
-  <h1>{{vm.organization.title}}</h1>
+
   <!-- Add/Edit Organization -->
   <add-item
     current-item="vm.organization"
     item-id="vm.organizationId"
+    assign-current-user="true"
     factory-name="Organization">
 
     <!-- Transcluded Content -->
-    <input type="text" class="form-control" ng-model="vm.currentItem.title">
+    <div class="form-group">
+      <label>Organization Name</label>
+      <input type="text" class="edit-input" ng-model="vm.currentItem.title">
+    </div>
 
   </add-item>
 

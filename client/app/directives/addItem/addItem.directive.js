@@ -9,7 +9,8 @@ export const addItemDirective = () => {
     controllerAs: 'vm',
     scope: {
       currentItem:'=',
-      factoryName: '@'
+      factoryName: '@',
+      assignCurrentUser: '@'
     },
     restrict: 'E',
     replace: true,

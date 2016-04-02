@@ -18,6 +18,12 @@ class AddItemController {
       this.getCurrentUsers();
     });
 
+    // Checks to assign current user by default when creating new item
+    if(!this.currentItem._id && this.assignCurrentUser){
+      this.User.getLoggedInUser()
+      .then(user => this.currentUsers.push(user));
+    }
+
     this.User.getAll()
     .then(users => {this.allUsers = users});
   }
@@ -25,7 +31,7 @@ class AddItemController {
   getCurrentUsers(){
     if(this.currentItem._id && !this.currentUsers.length){
       this.Factory.getUsersById(this.currentItem._id)
-        .then( users => this.currentUsers = users);
+      .then( users => this.currentUsers = users);
     }
   }
 
@@ -57,10 +63,10 @@ class AddItemController {
             userId: user._id
           });
         })
-      ).then(() => {
-        this.$state.go('organization', {id: this.currentItem._id});
+        ).then(() => {
+          this.$state.go('organization', {id: this.currentItem._id});
+        });
       });
-    });
   }
 
   onAddUser(user){
