@@ -1,9 +1,9 @@
 <section class="addItem">
 
   <div class="row">
-    <!-- Transclusion Point -->
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
       <form>
+        <!-- Transclusion Point -->
         <div class="item-form-container form-group">
             <div class="row">
               <div class="btn-container col-md-8 col-md-offset-2">
@@ -13,8 +13,11 @@
         </div>
       </form>
     </div>
-    <!-- Assign User Directive -->
-    <div class="col-md-6 assign-user-container">
+  </div>
+
+  <!-- Assign User Directive -->
+  <div class="row">
+    <div class="col-md-12 assign-user-container">
       <assign-user 
       current-users="vm.currentUsers"
       all-users="vm.allUsers"
@@ -23,5 +26,6 @@
       ></assign-user>
     </div>
   </div>
+
 
 </section>

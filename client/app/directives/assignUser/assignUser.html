@@ -1,58 +1,62 @@
 <section class="assignUser">
 
-  <!-- Current Users -->
-  <div class="row user-list-header">
-    <!-- Title -->
-    <div class="col-md-6">
-      <h5>Assigned Users</h5>
-    </div>
-    <!-- Search Bar -->
-    <div class="col-md-6">
-      <form>
-        <div class="form-group">
-        <label>Search Assigned Users</label>
-          <input class="form-control" type="text" ng-model="vm.searchCurrentUsers" placeholder="Search...">
-        </div>
-      </form>
-    </div>
-  </div>
-  <!-- Current User List -->
   <div class="row">
-    <div class="col-md-12 all-user-list">
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-info" ng-click="vm.handleRemoveUser($index)" ng-repeat="user in vm.currentUsers | filter:vm.searchCurrentUsers">
-          <span>{{user.username}}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- Available Users -->
-  <div class="row user-list-header">
-    <!-- Title -->
-    <div class="col-md-6">
-     <h5>Available Users</h5>
-   </div>
-   <!-- SearchBar -->
-   <div class="col-md-6">
-    <form>
-      <div class="form-group">
-        <label>Search Available Users</label>
-        <input class="form-control" type="text" ng-model="vm.searchAllUsers" placeholder="Search...">
+    <div class="col-md-4 col-md-offset-2">
+      <!-- Current Users -->
+      <div class="row user-list-header">
+        <!-- Title -->
+        <div class="col-md-6">
+          <h5>Assigned Users</h5>
+        </div>
+        <!-- Search Bar -->
+        <div class="col-md-6">
+          <form>
+            <div class="form-group">
+              <label>Search Assigned Users</label>
+              <input class="form-control" type="text" ng-model="vm.searchCurrentUsers" placeholder="Search...">
+            </div>
+          </form>
+        </div>
       </div>
-    </form>
-  </div>
-</div>
-<!-- Available User List -->
-<div class="row">
-  <div class="col-md-12 all-user-list">
-    <ul class="list-group">
-      <li class="list-group-item" ng-click="vm.handleAddUser($index)" ng-repeat="user in vm.filteredAllUsers | filter:vm.searchAllUsers">
-        <span>{{user.username}}</span>
-      </li>
-    </ul>
+      <!-- Current User List -->
+      <div class="row">
+        <div class="col-md-12 all-user-list">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-info" ng-click="vm.handleRemoveUser($index)" ng-repeat="user in vm.currentUsers | filter:vm.searchCurrentUsers">
+              <span>{{user.username}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <!-- Available Users -->
+      <div class="row user-list-header">
+        <!-- Title -->
+        <div class="col-md-6">
+         <h5>Available Users</h5>
+       </div>
+       <!-- SearchBar -->
+       <div class="col-md-6">
+        <form>
+          <div class="form-group">
+            <label>Search Available Users</label>
+            <input class="form-control" type="text" ng-model="vm.searchAllUsers" placeholder="Search...">
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Available User List -->
+    <div class="row">
+      <div class="col-md-12 all-user-list">
+        <ul class="list-group">
+          <li class="list-group-item" ng-click="vm.handleAddUser($index)" ng-repeat="user in vm.filteredAllUsers | filter:vm.searchAllUsers">
+            <span>{{user.username}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 </section>
