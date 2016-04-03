@@ -3,6 +3,7 @@
   <!-- Add/Edit Organization -->
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <h1 collapsible>Organization</h1>
       <add-item
         current-item="vm.organization"
         item-id="vm.organizationId"
@@ -22,7 +23,7 @@
   <!-- Add new Projects to Organization -->
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h1>Add a New Project</h1>
+      <h1 collapsible show-default="false">Add a New Project</h1>
       <add-sub-item
         parent-id="vm.organization._id"
         item-list="vm.organization.projects"
@@ -45,6 +46,7 @@
   <!-- List Current Projects -->
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <h1 collapsible>Current Projects</h1>
       <item-list
         items="vm.organization.projects"
         factory-name="Project"

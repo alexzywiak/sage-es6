@@ -3,7 +3,7 @@
   <!-- Tasks -->
  <div class="row">
    <div class="col-md-12">
-      <h2>Task List</h2>
+      <h2 collapsible>Task List</h2>
       <item-list 
        items="vm.loggedInUser.task_list"
        route="task"
@@ -29,7 +29,7 @@
   <!-- Project -->
   <div class="row">
     <div class="col-md-12">
-      <h2>Project List</h2>
+      <h2 collapsible show-default="false">Project List</h2>
       <item-list 
         items="vm.loggedInUser.project_list"
         route="project"
@@ -42,7 +42,7 @@
   <!-- Organization -->
   <div class="row">
     <div class="col-md-12">
-      <h2>Organization List</h2>
+      <h2 collapsible show-default="false">Organization List</h2>
       <item-list 
         items="vm.loggedInUser.organization"
         route="organization"
