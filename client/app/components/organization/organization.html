@@ -1,44 +1,60 @@
 <section class="organization">
 
   <!-- Add/Edit Organization -->
-  <add-item
-    current-item="vm.organization"
-    item-id="vm.organizationId"
-    assign-current-user="true"
-    factory-name="Organization">
-
-    <!-- Transcluded Content -->
-    <div class="form-group">
-      <label>Organization Name</label>
-      <input type="text" class="edit-input" ng-model="vm.currentItem.title">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <add-item
+        current-item="vm.organization"
+        item-id="vm.organizationId"
+        assign-current-user="true"
+        factory-name="Organization">
+      
+        <!-- Transcluded Content -->
+        <div class="form-group">
+          <label>Organization Name</label>
+          <input type="text" class="edit-input" ng-model="vm.currentItem.title">
+        </div>
+      
+      </add-item>
     </div>
-
-  </add-item>
+  </div>
 
   <!-- Add new Projects to Organization -->
-  <add-sub-item
-    parent-id="vm.organization._id"
-    item-list="vm.organization.projects"
-    factory-name="Project">
-
-    <!-- Transcluded Content -->
-    <h1>Add a New Project</h1>
-    <label>Name</label>
-    <input type="text" ng-model="vm.currentItem.name">
-    <label>Description</label>
-    <input type="text" ng-model="vm.currentItem.description">
-
-  </add-sub-item>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Add a New Project</h1>
+      <add-sub-item
+        parent-id="vm.organization._id"
+        item-list="vm.organization.projects"
+        factory-name="Project">
+      
+        <!-- Transcluded Content -->
+        <div class="form-group">
+          <label>Name</label>
+          <input class="form-control" type="text" ng-model="vm.currentItem.name">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input class="form-control" type="text" ng-model="vm.currentItem.description">
+        </div>
+      
+      </add-sub-item>
+    </div>
+  </div>
 
   <!-- List Current Projects -->
-  <item-list
-    items="vm.organization.projects"
-    factory-name="Project"
-    route="project">
-
-    <!-- Transcluded Content -->
-    <h1>{{item.name}}</h1>
-    <p>{{item.description}}</p>
-
-  </item-list>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <item-list
+        items="vm.organization.projects"
+        factory-name="Project"
+        route="project">
+      
+        <!-- Transcluded Content -->
+        <h1>{{item.name}}</h1>
+        <p>{{item.description}}</p>
+      
+      </item-list>
+    </div>
+  </div>
 </section>

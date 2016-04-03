@@ -3,6 +3,7 @@ export const projects = ($http) => {
   
 
   const createNew = (data) => {
+    console.log(data);
     return $http({
       method: 'POST',
       url: 'api/projects/create',
