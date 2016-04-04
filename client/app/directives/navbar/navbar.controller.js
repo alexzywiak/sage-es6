@@ -6,9 +6,6 @@ class NavbarController {
     this.logo = "Sage"
 
     this.links = [{
-      title: 'test',
-      state: 'test'
-    }, {
     	title: 'dashboard',
     	state: 'dashboard'
     }, {

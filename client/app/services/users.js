@@ -10,8 +10,8 @@ export const users = ($http, $q, $window, $state, Auth, API) => {
   * @return {[promise]} [resolves with user or false if not logged in]
   */
   const getLoggedInUser = () => {
-    //return Auth.getLoggedInUser();
-    return getUserById('56e8b4f29f1a60651b8c592c');
+    return Auth.getLoggedInUser();
+    //return getUserById('56e8b4f29f1a60651b8c592c');
   };
 
   /**
