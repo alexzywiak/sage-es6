@@ -1,22 +1,22 @@
 
 class SignupController {
-  constructor(Auth) {
+  constructor($state, Auth) {
+    this.$state = $state;
     this.Auth = Auth;
     this.user = {};
   }
 
   handleSignup(){
-    console.log(this.user);
     if(this.user.username && this.user.password){
       this.Auth.signUp(this.user)
         .then(resp => {
-          console.log(resp);
+          this.$state.go('dashboard');
         });
     }
   }
 
 }
 
-SignupController.$inject = ['Auth'];
+SignupController.$inject = ['$state', 'Auth'];
 
 export {SignupController};

@@ -14,6 +14,8 @@ import {services} from './services/services';
 
 // gulp component --name=new-component
 import {navbar} from './directives/navBar/navBar';
+import {login} from './components/login/login';
+import {signup} from './components/signup/signup';
 import {dashboard} from './components/dashboard/dashboard';
 import {organization} from './components/organization/organization';
 import {project} from './components/project/project';
@@ -28,6 +30,8 @@ angular.module('app', [
   services.name,
 
   navbar.name,
+  login.name,
+  signup.name,
   dashboard.name,
   organization.name,
   project.name,

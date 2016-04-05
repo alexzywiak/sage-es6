@@ -34,7 +34,7 @@ export const auth = ($http, $q, $window, jwtHelper, API) => {
    * Deletes jwt from storage
    * @return {[boolean]} [true]
    */
-   const logOut = () => {
+   const logout = () => {
     $window.localStorage.removeItem(storageKey);
     loggedInUser = null;
     return true;
@@ -54,10 +54,10 @@ export const auth = ($http, $q, $window, jwtHelper, API) => {
   };
 
   const _getLoggedInUserFromDB = () => {
-    let id = decodeToken().id;
+    let id = decodeToken()._id;
     return $http({
       method: "GET",
-      url: `api/user/${id}`
+      url: `api/users/${id}`
     })
     .then(resp => resp.data);
   };
@@ -100,8 +100,8 @@ export const auth = ($http, $q, $window, jwtHelper, API) => {
       url: 'api/signup',
       data: data
     }).then((resp) => {
-      if (resp.data.id_token) {
-        saveToken(resp.data.id_token);
+      if (resp.data.token) {
+        saveToken(resp.data.token);
         return getLoggedInUser();
       } else {
         return $q.when(false);
@@ -116,14 +116,13 @@ export const auth = ($http, $q, $window, jwtHelper, API) => {
    * @return {[promise]}  [gets current user from db]
    */
    const login = (data) => {
-    console.log(data);
     return $http({
       method: "POST",
       url: 'api/login',
       data: data
     }).then((resp) => {
-      if (resp.data.id_token) {
-        saveToken(resp.data.id_token);
+      if (resp.data.token) {
+        saveToken(resp.data.token);
         return getLoggedInUser();
       } else {
         return $q.when(false);
@@ -133,7 +132,7 @@ export const auth = ($http, $q, $window, jwtHelper, API) => {
 
   getLoggedInUser();
 
-  return {authorized, logOut, getLoggedInUser, isLoggedInUser, login, signUp};
+  return {authorized, logout, getLoggedInUser, isLoggedInUser, login, signUp};
 };
 
 auth.$inject = ['$http', '$q', '$window', 'jwtHelper', 'API'];

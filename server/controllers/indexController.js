@@ -13,7 +13,7 @@ var sendJWT = function(user, res) {
 
 module.exports = {
   createUser: function(req, res, next) {
-
+    console.log('body', req.body);
     var username = req.body.username.trim();
     var password = req.body.password.trim();
     if (username === '' || password === '') {

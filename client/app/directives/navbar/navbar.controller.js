@@ -1,21 +1,29 @@
 class NavbarController {
-  constructor($state) {
+  constructor($state, Auth) {
     
+    this.Auth = Auth;
     this.$state = $state;
 
-    this.logo = "Sage"
+    this.logo = "Sage";
 
     this.links = [{
     	title: 'dashboard',
     	state: 'dashboard'
     }, {
-      title: 'organization',
-      state: 'organization({id:""})'
+      title: 'login',
+      state: 'login'
+    }, {
+      title: 'signup',
+      state: 'signup'
+    }, {
+      title: 'logout',
+      click: 'logout',
+      state: 'login'
     }];
   }
 
   logout() {
-    this.$state.go('login');
+    this.Auth.logout();
   }
 
   handleClick(click){
@@ -25,7 +33,7 @@ class NavbarController {
   }
 }
 
-NavbarController.$inject = ['$state'];
+NavbarController.$inject = ['$state', 'Auth'];
 
 export {
   NavbarController
