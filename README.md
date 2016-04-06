@@ -1,4 +1,4 @@
-# vocalize
+# Sage
 
 ## Table of Contents
 
@@ -9,9 +9,7 @@
 
 ## About
 
-Vocalize is a pronunciation trainer made for language learners.
-
-![Sage Web App](http://imgur.com/7ay4ziN)
+![Sage Web App](http://i.imgur.com/lzyoBK9.png)
 
 Sage is a task management application for organizations.  Managers can easily create an organization, invite users and organize those users into separate project teams.  Each project can create and assign tasks to individual users, which they can mark off as complete.  
 
