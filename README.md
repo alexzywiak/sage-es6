@@ -11,10 +11,7 @@
 
 Vocalize is a pronunciation trainer made for language learners.
 
-![Vocalize Web App](http://imgur.com/KKXHEMP.png)
-![Vocalize Web Results](http://imgur.com/hkxT7I9.png)
-![Vocalize Web Results](http://imgur.com/Nssm3Lw.png)
-![Tech Stack](http://i.imgur.com/uwZ0o6u.png)
+![Sage Web App](http://imgur.com/7ay4ziN)
 
 Sage is a task management application for organizations.  Managers can easily create an organization, invite users and organize those users into separate project teams.  Each project can create and assign tasks to individual users, which they can mark off as complete.  
 
@@ -35,6 +32,6 @@ __Deployment__: Digital Ocean
 
 ```
 npm install
-gulp build
+gulp
 npm start
 ```
